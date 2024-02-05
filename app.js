@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 8000
 
-const userRooter= require("./roots/userRooter")
+const userRooter= require("./roots//userRooter")
 const twitRooter= require("./roots/twitRooter")
 app.use(express.json())
 

@@ -12,7 +12,7 @@ const TWITS = [
 ]
 
 exports.getTwit = (req, res) => {
-    res.status(200).send(TWITS)
+    res.status(200).json(TWITS)
 }
 
 exports.getTwitById = (req, res) => {
