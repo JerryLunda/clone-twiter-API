@@ -6,9 +6,9 @@ const TWITS = [
         "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
         "url": "https://via.placeholder.com/600/92c952",
         "thumbnailUrl": "https://via.placeholder.com/150/92c952",
-        "like": 9122,
+        "like": 9122, 
         "repost": 10
-      }
+    }
 ]
 
 exports.getTwit = (req, res) => {
@@ -16,8 +16,13 @@ exports.getTwit = (req, res) => {
 }
 
 exports.getTwitById = (req, res) => {
-    const id = req.params.id;
-    res.json(TWITS[id]);
+    const tweetId = req.params.id;
+    const tweet = TWITS[tweetId]
+    if (!tweet) {
+        return res.status(404).json({error: "Tweet not found"})
+    }
+     
+    res.json(TWITS[tweetId]);
 };
 
 exports.postTwit = (req, res) => {
@@ -26,13 +31,35 @@ exports.postTwit = (req, res) => {
 };
 
 exports.putTwit = (req, res)=>{
-    const id = req.params.id;
-    TWITS[id] = req.body
-    res.send(`data with ID ${id} updated successfully`)
+    const tweetId = req.params.id;
+    const tweet = TWITS[tweetId]
+
+    if (!tweet) {
+        return  res.status(404).json({error: "Tweet not found"})  
+    }
+
+    TWITS[tweetId] = req.body
+    res.send(`data with ID ${tweetId} updated successfully`)
+}
+
+exports.likeTwit = (req, res)=>{
+    const tweetId = req.params.id;
+    const tweet = TWITS[tweetId]
+     if (tweet) {
+        tweet.like++;
+        res.send(`Tweet ${tweetId} liked successfully`);
+     }
+     else{
+        res.status(404).json({error: "Tweet not found"})
+     }
 }
 
 exports.deleteTwit = (req, res)=>{
-    const id = req.params.id;
-    TWITS.splice(id,1)
-    res.send(`data with ID ${id} deleted successfully`)
+    const tweetId = req.params.id;
+    const tweet = TWITS[tweetId];
+    if (!tweet) {
+        return  res.status(404).json({error: "Tweet not found"})  
+    }
+    TWITS.splice(tweetId,1)
+    res.send(`data with ID ${tweetId} deleted successfully`)
 }
