@@ -3,7 +3,8 @@ const {createUser, getAllUser} = require('../models/userModel')
 const users = []
 
 exports.getUser = (req, res) => {
-    res.status(200).send(
+    getAllUser()
+    .then((users)=>res.status(200).send(users))
 }
 
 exports.getUserById = (req, res) => {

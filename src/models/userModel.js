@@ -27,7 +27,6 @@ async function createUser(user){
 async function getAllUser(){
     try {
         const users = await prisma.user.findMany()
-        console.log(users);
         return users
     } catch (error) {
         console.error("Création utilisateur impossible");
