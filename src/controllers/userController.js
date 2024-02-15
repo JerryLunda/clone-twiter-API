@@ -1,7 +1,9 @@
+const {createUser, getAllUser} = require('../models/userModel')
+
 const users = []
 
 exports.getUser = (req, res) => {
-    res.status(200).send(users)
+    res.status(200).send(
 }
 
 exports.getUserById = (req, res) => {
@@ -10,7 +12,7 @@ exports.getUserById = (req, res) => {
 };
 
 exports.postUser = (req, res) => {
-    users.push(req.body)
+    createUser(req.body)
     res.status(201).send("data added successfully")
 };
 
