@@ -11,13 +11,13 @@ exports.getTwitById = (req, res) => {
     .then((twit)=>res.status(200).json(twit))
 };
 
-exports.postTwit = (req, res, next) => {
+exports.postTwit = (req, res) => {
     try {
         const twit = req.body
         createTwit(twit)
         res.status(201).send("twit added successfully")
     } catch (error) {
-        next(error)
+        console.log('error');
     }
 };
 

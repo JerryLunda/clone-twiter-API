@@ -7,7 +7,6 @@ twitRouter.get("",twitController.getTwit)
 twitRouter.get("/:id",twitController.getTwitById)
 twitRouter.post("/",twitController.postTwit)
 // twitRouter.put("/:id",twitController.putTwit)
-// twitRouter.put("/:id/like",twitController.likeTwit)
 // twitRouter.delete("/:id",twitController.deleteTwit)
 
 module.exports = twitRouter;

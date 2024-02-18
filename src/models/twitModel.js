@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
  * @param {Object} twit 
  */
 async function createTwit(twit){
-    try {
-        const newTwit = await prisma.tweet.create({data:twit})
-    } catch (error) {
-        console.error("post impossible");
-    }finally{
-        await prisma.$disconnect();
-    }
+    // try {
+        await prisma.tweet.create({data:twit})
+    // } catch (error) {
+    //     console.error("post impossible");
+    // }finally{
+    //     await prisma.$disconnect();
+    // }
 }
 
 
