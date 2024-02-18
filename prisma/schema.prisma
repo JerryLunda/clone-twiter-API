@@ -35,7 +35,6 @@ model Tweet {
 
 model Like {
   id     Int    @id @default(autoincrement())
-  liked Boolean @default(false)
   user   User   @relation(fields: [userId], references: [id])
   tweet  Tweet  @relation(fields: [tweetId], references: [id])
   userId Int

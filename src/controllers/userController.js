@@ -1,15 +1,15 @@
-const {createUser, getAllUser} = require('../models/userModel')
+const {createUser, getAllUser, getUser, deleteUser, updateUser} = require('../models/userModel')
 
-const users = []
 
 exports.getUser = (req, res) => {
     getAllUser()
-    .then((users)=>res.status(200).send(users))
+    .then((users)=>res.status(200).json(users))
 }
 
 exports.getUserById = (req, res) => {
-    const id = req.params.id;
-    res.json(users[id]);
+    const id = parseInt(req.params.id);
+    getUser(id)
+    .then((user)=>res.status(200).json(user))
 };
 
 exports.postUser = (req, res) => {
@@ -18,13 +18,14 @@ exports.postUser = (req, res) => {
 };
 
 exports.putUser = (req, res)=>{
-    const id = req.params.id;
-    users[id] = req.body
+    const id = parseInt(req.params.id);
+    const user = req.body
+    updateUser(id, user)
     res.send(`data with ID ${id} updated successfully`)
 }
 
 exports.deleteUser = (req, res)=>{
-    const id = req.params.id;
-    users.splice(id,1)
+    const id = parseInt(req.params.id);
+    deleteUser(id)
     res.send(`data with ID ${id} deleted successfully`)
 }
