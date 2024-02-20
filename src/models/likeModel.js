@@ -39,4 +39,18 @@ async function deleteLike(idUser, idTweet){
     }
 }
 
-module.exports ={createLike, deleteLike} 
+
+async function countLikeTweet(tweetId){
+    
+    try {
+        return await prisma.like.count({
+            where: {
+                tweetId: tweetId
+            }
+        })
+    } catch (error) {
+        console.log("error: "+error);
+    }
+}
+
+module.exports ={createLike, deleteLike, countLikeTweet} 

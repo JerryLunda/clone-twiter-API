@@ -1,4 +1,4 @@
-const {createLike, deleteLike} = require('../models/likeModel')
+const {createLike, deleteLike, countLikeTweet} = require('../models/likeModel')
 
 
 exports.postLike = (req, res) => {
@@ -13,3 +13,10 @@ exports.deleteLike = (req, res)=>{
     deleteLike(userId, tweetId)
     res.send(`tweet unliked successfully`)
 }
+
+
+exports.countLike = (req, res) => {
+    const tweetId = parseInt(req.params.id);
+    countLikeTweet(tweetId)
+    .then((like)=>res.status(200).json({like:like}))
+};

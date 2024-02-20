@@ -1,7 +1,7 @@
 const {createTwit, getAllTwit, getTwit} = require('../models/twitModel')
 
 exports.getTwit = (req, res) => {
-    getAllTwit()
+    const twit = getAllTwit()
     .then(tweet=>res.status(200).json(tweet))
 }
 

@@ -21,14 +21,14 @@ async function createTwit(twit){
  * @returns twits
  */
 async function getAllTwit(){
-    try {
-        const twits = await prisma.tweet.findMany()
-        return twits
-    } catch (error) {
-        console.error("Création utilisateur impossible");
-    }finally{
-        await prisma.$disconnect();
+  return await prisma.tweet.findMany({
+    include: {
+      _count: {
+        select: {likes: true}
+      }
     }
+  });
+  
 }
 
 
@@ -51,46 +51,5 @@ async function getTwit(twitId){
 }
 
 
-// /**
-//  * allows you to remove one Twit by Id
-//  * @param {number} TwitId 
-//  * @returns 
-//  */
-// async function deleteTwit(TwitId){
-//     try {
-//         const Twit = await prisma.Twit.delete({
-//             where: {id:TwitId}
-//         })
-//         return Twit
-//     } catch (error) {
-//         console.error("suppression utilisateur impossible");
-//     }finally{
-//         await prisma.$disconnect();
-//     }
-// }
-
-
-// /**
-//  * allows you to update one Twit by Id
-//  * @param {number} TwitId 
-//  * @param {object} p_Twit 
-//  * @returns 
-//  */
-// async function updateTwit(twitId, p_Twit){
-//     // try {
-//         const Twit = await prisma.Twit.update({
-//             where: {id:twitId},
-//             data: {
-//                 content: p_Twit.content,
-//                 url: p_Twit.url,
-//                 authorId: twitId 
-//             }
-//         })
-//         return Twit
-//     // } catch (error) {
-//     //     console.log("modification utilisateur impossible");
-//     // }finally{
-//     //     await prisma.$disconnect();
-//     // }
-// }
+getAllTwit()
 module.exports ={createTwit, getAllTwit, getTwit} 
