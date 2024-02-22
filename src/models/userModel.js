@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
  * @param {Object} user 
  */
 async function createUser(user){
-    try {
+    // try {
         const newUser = await prisma.user.create({data:user})
-    } catch (error) {
-        console.error("Création utilisateur impossible");
-    }finally{
-        await prisma.$disconnect();
-    }
+    // } catch (error) {
+    //     console.error("Création utilisateur impossible");
+    // }finally{
+    //     await prisma.$disconnect();
+    // }
 }
 
 

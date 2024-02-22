@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const {createUser, getAllUser, getUser, deleteUser, updateUser} = require('../models/userModel')
 
 
@@ -12,7 +13,9 @@ exports.getUserById = (req, res) => {
     .then((user)=>res.status(200).json(user))
 };
 
-exports.postUser = (req, res) => {
+exports.postUser = async (req, res) => {
+    const { password } = req.body;
+    req.body.password = await bcrypt.hash(password, 10);
     createUser(req.body)
     res.status(201).send("data added successfully")
 };

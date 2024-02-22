@@ -1,6 +1,5 @@
 const express = require('express');
 const likeRouter = express.Router()
-
 const likeController = require("../src/controllers/likeController")
 
 likeRouter.get("/:id",likeController.countLike)

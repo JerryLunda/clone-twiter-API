@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
  * @param {Object} twit 
  */
 async function createTwit(twit){
-    // try {
+    try {
         await prisma.tweet.create({data:twit})
-    // } catch (error) {
-    //     console.error("post impossible");
-    // }finally{
-    //     await prisma.$disconnect();
-    // }
+    } catch (error) {
+        console.error("post impossible");
+    }finally{
+        await prisma.$disconnect();
+    }
 }
 
 
@@ -38,16 +38,16 @@ async function getAllTwit(){
  * @returns twit
  */
 async function getTwit(twitId){
-    // try {
+    try {
         const twit = await prisma.tweet.findUnique({
             where: {id:twitId}
         })
         return twit
-    // } catch (error) {
-    //     console.error("recuperation utilisateur impossible");
-    // }finally{
-    //     await prisma.$disconnect();
-    // }
+    } catch (error) {
+        console.error("recuperation utilisateur impossible");
+    }finally{
+        await prisma.$disconnect();
+    }
 }
 
 
